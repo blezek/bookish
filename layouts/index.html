@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>{{ .Title }}</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="{{ .Description }}">
+        <meta name="generator" content="bookish">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ .Site.BaseURL }}/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="{{ .Site.BaseURL }}/images/favicon.ico" type="image/x-icon">
+        
+        {{ partial "style.html" }}
+        {{ partial "head.html" }}
+    </head>
+    <body>
+      {{ range where .Data.Pages "Type" "summary" }}
+      {{partial "content.html" .}}
+      {{end}}
+    </body>
+</html>

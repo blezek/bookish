@@ -1,0 +1,50 @@
+
+<!-- {% macro articles(_articles) %} -->
+<!--     {% for item in _articles %} -->
+<!--         <li class="chapter {% if item.path == _input %}active{% endif %}" data-level="{% item.level }}" {% if item.path and not item.external %}data-path="{% item.path|contentLink }}"{% endif %}> -->
+<!--             {% if item.path and item.exists %} -->
+<!--                 {% if not item.external %} -->
+<!--                     <a href="{% basePath }}/{% item.path|contentLink }}"> -->
+<!--                 {% else %} -->
+<!--                     <a target="_blank" href="{% item.path }}"> -->
+<!--                 {% endif %} -->
+<!--                         <i class="fa fa-check"></i> -->
+<!--                         {% if item.level != "0" %} -->
+<!--                             <b>{% item.level }}.</b> -->
+<!--                         {% endif %} -->
+<!--                         {% item.title }} -->
+<!--                     </a> -->
+<!--             {% else %} -->
+<!--             <span><b>{% item.level }}.</b> {% item.title }}</span> -->
+<!--             {% endif %} -->
+<!--             {% if item.articles.length > 0 %} -->
+<!--             <ul class="articles"> -->
+<!--                 {% articles(item.articles) }} -->
+<!--             </ul> -->
+<!--             {% endif %} -->
+<!--         </li> -->
+<!--     {% endfor %} -->
+<!-- {% endmacro %} -->
+
+<div class="book-summary">
+    <nav role="navigation">
+      <ul class="summary">
+        {{ $MenuCount := 1}}
+        {{ range $key, $Menu := .Site.Menus }}
+        {{ range $Menu }}
+        <li class="chapter">
+          <a href="{{.URL}}">{{.Name}}</a>
+          {{ $Section := index $.Site.Sections $key}}
+          <ul class="articles">
+            {{range $Section}}
+            <li class="chapter">
+              <a href="{{.Page.RelPermalink}}">{{.Page.LinkTitle}}</a>
+            </li>
+            {{end}}
+          </ul>
+        </li>
+        {{end}}
+        {{end}}
+      </ul>
+    </nav>
+</div>
