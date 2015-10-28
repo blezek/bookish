@@ -29,12 +29,14 @@
 <div class="book-summary">
     <nav role="navigation">
       <ul class="summary">
-        {{ $MenuCount := 1}}
-        {{ range $key, $Menu := .Site.Menus }}
-        {{ range $Menu }}
         <li class="chapter">
-          <a href="{{.URL}}">{{.Name}}</a>
-          {{ $Section := index $.Site.Sections $key}}
+          <a href="/">Home</a>
+          </li>
+        {{ range .Site.Menus.main }}
+        <li class="chapter">
+          <a href="{{.URL}}">{{.Name}} -- {{.Identifier}}</a>
+          {{ $Section := index $.Site.Sections .Identifier}}
+          {{ $Section | printf "%+v"}}
           <ul class="articles">
             {{range $Section}}
             <li class="chapter">
@@ -43,7 +45,6 @@
             {{end}}
           </ul>
         </li>
-        {{end}}
         {{end}}
       </ul>
     </nav>
